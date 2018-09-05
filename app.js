@@ -24,6 +24,12 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
+//CORS
+app.use(require('cors')({
+  origin: true,
+  credentials: true
+}))
+
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -51,7 +57,9 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 
 
+const registro = require('./routes/registro')
 const index = require('./routes/index');
+app.use('/', registro)
 app.use('/', index);
 
 
